@@ -23,17 +23,28 @@ namespace Tetris_Game
         public GameBoard()
         {
             InitializeComponent();
+            CreateTetrisGrid(10, 20);
         }   
 
         private static void CreateTetrisGrid(int columns, int rows)
         {
-            var grid = new Grid();
+            var boardGrid = new Grid();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < columns; i++)
             {
-                grid.RowDefinitions;
+                boardGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
-            
+
+            for (int i = 0; i < rows; i++)
+            {
+                boardGrid.RowDefinitions.Add(new RowDefinition());
+            }
+
+
+
+            Grid.SetRow(boardGrid, 0);
+            Grid.SetColumn(boardGrid, 0);
+
         }
     }
 }

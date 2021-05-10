@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Tetris Game" Height="650" Width="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+                
+            </ColumnDefinition>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
     </Grid>
 </Window>
