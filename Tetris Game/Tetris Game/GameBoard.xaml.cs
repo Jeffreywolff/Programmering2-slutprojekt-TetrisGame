@@ -40,8 +40,7 @@ namespace Tetris_Game
                 boardGrid.RowDefinitions.Add(new RowDefinition());
             }
 
-
-
+            boardGrid.Background = #1E1E1E;
             Grid.SetRow(boardGrid, 0);
             Grid.SetColumn(boardGrid, 0);
 

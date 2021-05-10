@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:Tetris_Game"
         mc:Ignorable="d"
         Title="Tetris Game" Height="650" Width="500">
-    <Grid>
+    <Grid Background="#4982FD">
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
-                
+
             </ColumnDefinition>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
+
+
     </Grid>
 </Window>
