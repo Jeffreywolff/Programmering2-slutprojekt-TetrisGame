@@ -23,26 +23,81 @@ namespace Tetris_Game
         public GameBoard()
         {
             InitializeComponent();
-            CreateTetrisGrid(10, 20);
         }   
 
-        private static void CreateTetrisGrid(int columns, int rows)
+        private void CreateTetrisGrid(int columns, int rows)
         {
             var boardGrid = new Grid();
 
             for (int i = 0; i < columns; i++)
             {
                 boardGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                
             }
+            for (int j = 0; j < rows; j++)
+            {
+
+                boardGrid.RowDefinitions.Add(new RowDefinition());
+
+            }
+
+
+
+            //SolidColorBrush DarkgreyBrush = new SolidColorBrush(Color.FromRgb(48, 48, 48));
+            SolidColorBrush blackBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            //boardGrid.Background = DarkgreyBrush;
+
+
+
+            Grid.SetRow(boardGrid, 0);
+            Grid.SetColumn(boardGrid, 0);
+
+            root.Children.Add(boardGrid);
 
             for (int i = 0; i < rows; i++)
             {
-                boardGrid.RowDefinitions.Add(new RowDefinition());
+                for (int j = 0; j < columns; j++)
+                {
+                    Rectangle rectangle = new Rectangle();
+                    rectangle.Fill = blackBrush;
+                    
+                    Grid.SetRow(rectangle, i);
+                    Grid.SetColumn(rectangle, j);
+                    boardGrid.Children.Add(rectangle);
+
+
+                }
             }
 
-            boardGrid.Background = #1E1E1E;
-            Grid.SetRow(boardGrid, 0);
-            Grid.SetColumn(boardGrid, 0);
+
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            CreateTetrisGrid(10, 20);
+            CreateSideBar();
+        }
+
+        private void CreateSideBar()
+        {
+            var sideRectangle = new Rectangle();
+            SolidColorBrush blueBrush = new SolidColorBrush(Color.FromRgb(66, 135, 245));
+            sideRectangle.Fill = blueBrush;
+            Grid.SetColumn(sideRectangle, 1);
+            root.Children.Add(sideRectangle);
+
+            var scoreText = new TextBlock();
+            SolidColorBrush blackBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            SolidColorBrush whiteBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            scoreText.Text = "000";
+            scoreText.FontSize = 30;
+            scoreText.Width = 70;
+            scoreText.Height = 30;
+            scoreText.Background = blackBrush;
+            scoreText.Foreground = whiteBrush;
+            Grid.SetColumn(scoreText, 1);
+            root.Children.Add(scoreText);
 
         }
     }

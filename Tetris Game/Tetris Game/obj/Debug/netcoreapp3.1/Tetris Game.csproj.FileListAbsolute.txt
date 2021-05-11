@@ -1,22 +1,3 @@
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.exe
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.deps.json
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.runtimeconfig.json
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.runtimeconfig.dev.json
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.dll
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.pdb
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.csprojAssemblyReference.cache
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\MainWindow.g.cs
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\App.g.cs
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game_MarkupCompile.cache
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game_MarkupCompile.lref
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\MainWindow.baml
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.g.resources
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.AssemblyInfoInputs.cache
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.AssemblyInfo.cs
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.csproj.CoreCompileInputs.cache
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.dll
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.pdb
-C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.genruntimeconfig.cache
 C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.csprojAssemblyReference.cache
 C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\GameBoard.g.cs
 C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\App.g.cs
@@ -24,3 +5,22 @@ C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tet
 C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game_MarkupCompile.lref
 C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.dll
 C:\Users\Wolff\Documents\Github\School\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.pdb
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.exe
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.deps.json
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.runtimeconfig.json
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.runtimeconfig.dev.json
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.dll
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\bin\Debug\netcoreapp3.1\Tetris Game.pdb
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\GameBoard.g.cs
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game_MarkupCompile.cache
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game_MarkupCompile.lref
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\GameBoard.baml
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.g.resources
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.AssemblyInfoInputs.cache
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.AssemblyInfo.cs
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.csproj.CoreCompileInputs.cache
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.dll
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.pdb
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.genruntimeconfig.cache
+C:\Users\Jeffrey.wolff\Documents\GitHub\Programmering2-slutprojekt-TetrisGame\Tetris Game\Tetris Game\obj\Debug\netcoreapp3.1\Tetris Game.csprojAssemblyReference.cache
