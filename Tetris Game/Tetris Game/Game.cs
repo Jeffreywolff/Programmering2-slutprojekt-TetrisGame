@@ -11,8 +11,9 @@ namespace Tetris_Game
 
         }
 
-        private static void OrganizeShape()
+        private static void OrganizeShape(ITetrominos shape)
         {
+
 
         }
 

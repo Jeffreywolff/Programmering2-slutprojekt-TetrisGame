@@ -8,6 +8,7 @@ namespace Tetris_Game
 {
     class I_Shape : ITetrominos
     {
+        public static string tetromino = "I-Shape";
         public static void CreateShape()
         {
             // The I-Block consist of four blue blocks in one column.
@@ -21,9 +22,6 @@ namespace Tetris_Game
             
         }
 
-        private void OrganizeShape()
-        {
-
-        }
+        
     }
 }

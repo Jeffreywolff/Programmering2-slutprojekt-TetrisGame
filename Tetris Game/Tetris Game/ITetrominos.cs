@@ -8,6 +8,8 @@ namespace Tetris_Game
 {
     interface ITetrominos
     {
+
+        public static string tetromino;
         public static void CreateShape()
         {
 
