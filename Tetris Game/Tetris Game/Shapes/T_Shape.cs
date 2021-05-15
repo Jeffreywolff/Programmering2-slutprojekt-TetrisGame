@@ -6,22 +6,20 @@ using System.Windows.Media;
 
 namespace Tetris_Game
 {
-    class I_Shape : ITetrominos
+    class T_Shape : ITetrominos
     {
-        public static string tetromino = "I-Shape";
+
+        public static string tetromino = "T-Shape";
         public static void CreateShape()
         {
-            // The I-Block consist of four blue blocks in one column.
+            // The T-Block consist of four purple blocks with the shape of a T.
             for (int i = 0; i < 5; i++)
             {
                 Rectangle rectangle = new Rectangle();
-                SolidColorBrush lightBlueBrush = new SolidColorBrush(Color.FromRgb(0, 214, 251));
-                rectangle.Fill = lightBlueBrush;
+                SolidColorBrush purpleBrush = new SolidColorBrush(Color.FromRgb(173, 0, 250));
+                rectangle.Fill = purpleBrush;
             }
-            
-            
         }
 
-        
     }
 }

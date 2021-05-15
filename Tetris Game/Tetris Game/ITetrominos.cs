@@ -10,9 +10,14 @@ namespace Tetris_Game
     {
 
         public static string tetromino;
+
+        
         public static void CreateShape()
         {
-
+            for (int i = 0; i < 5; i++)
+            {
+               
+            }
         }
 
     }
