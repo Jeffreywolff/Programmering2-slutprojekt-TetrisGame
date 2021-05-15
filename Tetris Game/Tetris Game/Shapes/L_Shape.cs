@@ -4,21 +4,22 @@ using System.Text;
 using System.Windows.Shapes;
 using System.Windows.Media;
 
+
 namespace Tetris_Game.Shapes
 {
-    class J_Shape
+    class L_Shape
     {
-
-        public static string tetromino = "J-Shape";
+        public static string tetromino = "L-Shape";
         public static void CreateShape()
         {
-            // The T-Block consist of four purple blocks with the shape of a T.
+            // The T-Block consist of four orange blocks with the shape of a L.
             for (int i = 0; i < 5; i++)
             {
                 Rectangle rectangle = new Rectangle();
-                SolidColorBrush darkBlueBrush = new SolidColorBrush(Color.FromRgb(45, 0, 250));
-                rectangle.Fill = darkBlueBrush;
+                SolidColorBrush orangeBrush = new SolidColorBrush(Color.FromRgb(255, 108, 19));
+                rectangle.Fill = orangeBrush;
             }
         }
+
     }
 }
