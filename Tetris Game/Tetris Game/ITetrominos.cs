@@ -14,6 +14,8 @@ namespace Tetris_Game
         
         public static void CreateShape()
         {
+
+            //All shapes consists of four blocks
             for (int i = 0; i < 5; i++)
             {
                

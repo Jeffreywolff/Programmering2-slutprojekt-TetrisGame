@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Tetris_Game
 {
-    class Game
+    class GameMechanics
     {
-        public Game()
+
+        List<ITetrominos> followingShapes = new List<ITetrominos>();
+        public GameMechanics()
         {
 
         }

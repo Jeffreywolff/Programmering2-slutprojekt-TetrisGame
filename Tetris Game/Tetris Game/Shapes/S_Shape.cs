@@ -4,20 +4,21 @@ using System.Text;
 using System.Windows.Shapes;
 using System.Windows.Media;
 
+
 namespace Tetris_Game.Shapes
 {
-    class J_Shape : ITetrominos
+    class S_Shape : ITetrominos
     {
 
-        public static string tetromino = "J-Shape";
+        public static string tetromino = "S-Shape";
         public static void CreateShape()
         {
-            // The J-Block consist of four Darkblue blocks with the shape of a J.
+            // The S-Block consist of four green blocks with the shape of an S.
             for (int i = 0; i < 5; i++)
             {
                 Rectangle rectangle = new Rectangle();
-                SolidColorBrush darkBlueBrush = new SolidColorBrush(Color.FromRgb(45, 0, 250));
-                rectangle.Fill = darkBlueBrush;
+                SolidColorBrush greenBrush = new SolidColorBrush(Color.FromRgb(102, 238, 17));
+                rectangle.Fill = greenBrush;
             }
         }
     }

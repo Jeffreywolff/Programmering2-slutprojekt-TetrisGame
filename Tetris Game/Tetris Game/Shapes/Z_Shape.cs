@@ -6,19 +6,20 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class J_Shape : ITetrominos
+    class Z_Shape : ITetrominos
     {
 
-        public static string tetromino = "J-Shape";
+        public static string tetromino = "Z-Shape";
         public static void CreateShape()
         {
-            // The J-Block consist of four Darkblue blocks with the shape of a J.
+            // The Z-Block consist of four red blocks with the shape of an Z.
             for (int i = 0; i < 5; i++)
             {
                 Rectangle rectangle = new Rectangle();
-                SolidColorBrush darkBlueBrush = new SolidColorBrush(Color.FromRgb(45, 0, 250));
-                rectangle.Fill = darkBlueBrush;
+                SolidColorBrush redBrush = new SolidColorBrush(Color.FromRgb(255, 25, 69));
+                rectangle.Fill = redBrush;
             }
         }
+
     }
 }

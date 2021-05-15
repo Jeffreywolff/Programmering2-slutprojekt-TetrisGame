@@ -7,12 +7,12 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class L_Shape
+    class L_Shape : ITetrominos
     {
         public static string tetromino = "L-Shape";
         public static void CreateShape()
         {
-            // The T-Block consist of four orange blocks with the shape of a L.
+            // The L-Block consist of four orange blocks with the shape of a L.
             for (int i = 0; i < 5; i++)
             {
                 Rectangle rectangle = new Rectangle();
