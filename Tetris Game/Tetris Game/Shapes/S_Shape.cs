@@ -7,10 +7,10 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class S_Shape : ITetrominos
+    class S_Shape : ITetromino
     {
 
-        public static string tetromino = "S-Shape";
+        public static string tetrominoName = "S-Shape";
         public static void CreateShape()
         {
             // The S-Block consist of four green blocks with the shape of an S.

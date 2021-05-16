@@ -6,10 +6,10 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class J_Shape : ITetrominos
+    class J_Shape : ITetromino
     {
 
-        public static string tetromino = "J-Shape";
+        public static string tetrominoName = "J-Shape";
         public static void CreateShape()
         {
             // The J-Block consist of four Darkblue blocks with the shape of a J.

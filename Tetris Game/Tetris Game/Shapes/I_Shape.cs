@@ -6,12 +6,24 @@ using System.Windows.Media;
 
 namespace Tetris_Game
 {
-    class I_Shape : ITetrominos
+    class I_Shape : ITetromino
     {
+
+        public List<Shape> gameBlock { get; set; }
+
+        public string tetrominoName {
+            get
+            {
+                return tetrominoName;
+            }
+            private set
+            {
+                tetrominoName = "I-Shape";
+            }
+        }
         
 
-        public static string tetromino = "I-Shape";
-        public static void CreateShape()
+        public I_Shape()
         {
             // The I-Block consist of four blue blocks in one column.
             for (int i = 0; i < 5; i++)
@@ -19,9 +31,11 @@ namespace Tetris_Game
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush lightBlueBrush = new SolidColorBrush(Color.FromRgb(0, 214, 251));
                 rectangle.Fill = lightBlueBrush;
+                gameBlock.Add(rectangle);
+
             }
-            
-            
+
+
         }
 
         

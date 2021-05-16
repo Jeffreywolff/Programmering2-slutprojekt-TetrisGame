@@ -7,10 +7,10 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class O_Shape : ITetrominos
+    class O_Shape : ITetromino
     {
 
-        public static string tetromino = "O-Shape";
+        public static string tetrominoName = "O-Shape";
         public static void CreateShape()
         {
             // The O-Block consist of four yellow blocks with the shape of an O.

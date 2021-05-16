@@ -7,9 +7,9 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class L_Shape : ITetrominos
+    class L_Shape : ITetromino
     {
-        public static string tetromino = "L-Shape";
+        public static string tetrominoName = "L-Shape";
         public static void CreateShape()
         {
             // The L-Block consist of four orange blocks with the shape of a L.

@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class Z_Shape : ITetrominos
+    class Z_Shape : ITetromino
     {
 
         public static string tetromino = "Z-Shape";

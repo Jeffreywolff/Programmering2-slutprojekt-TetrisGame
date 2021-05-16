@@ -6,12 +6,14 @@ using System.Windows.Media;
 
 namespace Tetris_Game
 {
-    interface ITetrominos
+    interface ITetromino
     {
+        public List<Shape> gameBlock { get; set; }
 
-        public static string tetromino;
+        string tetrominoName
+        { get; set; }
 
-        
+
         public static void CreateShape()
         {
 
