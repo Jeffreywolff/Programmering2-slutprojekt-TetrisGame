@@ -17,7 +17,7 @@ namespace Tetris_Game
             {
                 case 1:
                     var iShape = new I_Shape();
-                    shape = iShape.gameBlock;
+                    shape = iShape.GameBlock;
                     break;
                 //case 2:
                 // return T_Shape.CreateShape();

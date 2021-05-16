@@ -8,21 +8,10 @@ namespace Tetris_Game
 {
     interface ITetromino
     {
-        public List<Shape> gameBlock { get; set; }
+        public List<Shape> GameBlock { get; set; }
 
-        string tetrominoName
-        { get; set; }
+        public string TetrominoName { get; set; }
 
-
-        public static void CreateShape()
-        {
-
-            //All shapes consists of four blocks
-            for (int i = 0; i < 5; i++)
-            {
-               
-            }
-        }
 
     }
 }

@@ -6,22 +6,19 @@ using System.Windows.Media;
 
 namespace Tetris_Game
 {
-    class I_Shape : ITetromino
+    class I_Shape : ShapeCtor, ITetromino
     {
 
-        public List<Shape> gameBlock { get; set; }
+        public List<Shape> GameBlock { get; private set; }
 
-        public string tetrominoName {
-            get
-            {
-                return tetrominoName;
-            }
+        public string TetrominoName
+        {
+            get => TetrominoName;
             private set
             {
-                tetrominoName = "I-Shape";
+                TetrominoName = "I-Shape";
             }
         }
-        
 
         public I_Shape()
         {
@@ -31,13 +28,13 @@ namespace Tetris_Game
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush lightBlueBrush = new SolidColorBrush(Color.FromRgb(0, 214, 251));
                 rectangle.Fill = lightBlueBrush;
-                gameBlock.Add(rectangle);
+                GameBlock.Add(rectangle);
 
             }
 
 
         }
 
-        
+
     }
 }

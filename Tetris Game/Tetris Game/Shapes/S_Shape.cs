@@ -7,11 +7,20 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class S_Shape : ITetromino
+    class S_Shape : ShapeCtor, ITetromino
     {
+        public List<Shape> GameBlock { get; private set; }
 
-        public static string tetrominoName = "S-Shape";
-        public static void CreateShape()
+        public string TetrominoName
+        {
+            get => TetrominoName;
+            private set
+            {
+                TetrominoName = "S-Shape";
+            }
+        }
+
+        public S_Shape()
         {
             // The S-Block consist of four green blocks with the shape of an S.
             for (int i = 0; i < 5; i++)

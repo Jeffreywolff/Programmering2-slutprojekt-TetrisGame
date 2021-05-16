@@ -6,11 +6,20 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class Z_Shape : ITetromino
+    class Z_Shape : ShapeCtor, ITetromino
     {
+        public List<Shape> GameBlock { get; private set; }
 
-        public static string tetromino = "Z-Shape";
-        public static void CreateShape()
+        public string TetrominoName
+        {
+            get => TetrominoName;
+            private set
+            {
+                TetrominoName = "Z-Shape";
+            }
+        }
+
+        public Z_Shape()
         {
             // The Z-Block consist of four red blocks with the shape of an Z.
             for (int i = 0; i < 5; i++)

@@ -6,11 +6,20 @@ using System.Windows.Media;
 
 namespace Tetris_Game
 {
-    class T_Shape : ITetromino
+    class T_Shape : ShapeCtor, ITetromino
     {
+        public List<Shape> GameBlock { get; private set; }
 
-        public static string tetrominoName = "T-Shape";
-        public static void CreateShape()
+        public string TetrominoName
+        {
+            get => TetrominoName;
+            private set
+            {
+                TetrominoName = "T-Shape";
+            }
+        }
+
+        public T_Shape()
         {
             // The T-Block consist of four purple blocks with the shape of a T.
             for (int i = 0; i < 5; i++)
@@ -20,6 +29,8 @@ namespace Tetris_Game
                 rectangle.Fill = purpleBrush;
             }
         }
+
+        
 
     }
 }

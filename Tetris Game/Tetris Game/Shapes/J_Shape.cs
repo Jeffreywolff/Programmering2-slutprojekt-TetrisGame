@@ -6,11 +6,23 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class J_Shape : ITetromino
+    class J_Shape : ShapeCtor, ITetromino
     {
+        public List<Shape> GameBlock { get; private set; }
 
-        public static string tetrominoName = "J-Shape";
-        public static void CreateShape()
+
+
+
+        public string TetrominoName
+        {
+            get => TetrominoName;
+            private set
+            {
+                TetrominoName = "J-Shape";
+            }
+        }
+
+        public J_Shape()
         {
             // The J-Block consist of four Darkblue blocks with the shape of a J.
             for (int i = 0; i < 5; i++)
@@ -20,5 +32,6 @@ namespace Tetris_Game.Shapes
                 rectangle.Fill = darkBlueBrush;
             }
         }
+
     }
 }

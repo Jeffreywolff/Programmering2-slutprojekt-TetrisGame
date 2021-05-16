@@ -18,7 +18,7 @@ namespace Tetris_Game
             GameBoard.boardGrid.Children.Add(followingShapes);
         }
 
-        private static void OrganizeShape(ITetrominos shape)
+        private void OrganizeShape(ITetrominos shape)
         {
 
 
