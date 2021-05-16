@@ -20,7 +20,7 @@ namespace Tetris_Game
     /// </summary>
     public partial class GameBoard : Window
     {
-        public static Grid boardGrid = new Grid();
+        private Grid boardGrid = new Grid();
         public GameBoard()
         {
             InitializeComponent();
@@ -79,7 +79,7 @@ namespace Tetris_Game
             CreateTetrisGrid(10, 20);
             CreateSideBar();
 
-            var gameMech = new GameMechanics();
+            var gameMech = new GameModel();
             
         }
 

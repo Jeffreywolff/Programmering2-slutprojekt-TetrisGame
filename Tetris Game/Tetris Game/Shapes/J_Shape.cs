@@ -6,21 +6,26 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class J_Shape : ShapeCtor, ITetromino
+    class J_Shape : ITetromino
     {
-        public List<Shape> GameBlock { get; private set; }
-
-
-
-
-        public string TetrominoName
+        private const string _tetrominoName = "J-Shape";
+        private List<Rectangle> _gameBlock;
+        List<Rectangle> ITetromino.GameBlock
         {
-            get => TetrominoName;
-            private set
+            get
             {
-                TetrominoName = "J-Shape";
+                return _gameBlock;
             }
         }
+
+        string ITetromino.TetrominoName
+        {
+            get
+            {
+                return _tetrominoName;
+            }
+        }
+
 
         public J_Shape()
         {
@@ -30,8 +35,10 @@ namespace Tetris_Game.Shapes
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush darkBlueBrush = new SolidColorBrush(Color.FromRgb(45, 0, 250));
                 rectangle.Fill = darkBlueBrush;
+                _gameBlock.Add(rectangle);
             }
         }
 
+        
     }
 }

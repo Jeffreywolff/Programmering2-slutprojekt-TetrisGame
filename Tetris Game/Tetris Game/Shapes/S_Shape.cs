@@ -7,16 +7,23 @@ using System.Windows.Media;
 
 namespace Tetris_Game.Shapes
 {
-    class S_Shape : ShapeCtor, ITetromino
+    class S_Shape : ITetromino
     {
-        public List<Shape> GameBlock { get; private set; }
-
-        public string TetrominoName
+        private const string _tetrominoName = "S-Shape";
+        private List<Rectangle> _gameBlock;
+        List<Rectangle> ITetromino.GameBlock
         {
-            get => TetrominoName;
-            private set
+            get
             {
-                TetrominoName = "S-Shape";
+                return _gameBlock;
+            }
+        }
+
+        string ITetromino.TetrominoName
+        {
+            get
+            {
+                return _tetrominoName;
             }
         }
 
@@ -28,6 +35,7 @@ namespace Tetris_Game.Shapes
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush greenBrush = new SolidColorBrush(Color.FromRgb(102, 238, 17));
                 rectangle.Fill = greenBrush;
+                _gameBlock.Add(rectangle);
             }
         }
     }

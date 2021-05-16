@@ -5,20 +5,17 @@ using System.Windows.Shapes;
 
 namespace Tetris_Game
 {
-    class GameMechanics
+    class GameModel
     {
 
-        List<Array> followingShapes = new List<Array>();
-        public GameMechanics()
+        ITetromino nextTetromino;
+        public GameModel()
         {
-
-            var shape = Controller.GetRandomShape();
-            followingShapes.Add(shape);
+            nextTetromino = Controller.GetRandomShape();
             
-            GameBoard.boardGrid.Children.Add(followingShapes);
         }
 
-        private void OrganizeShape(ITetrominos shape)
+        private void OrganizeShape(ITetromino shape)
         {
 
 

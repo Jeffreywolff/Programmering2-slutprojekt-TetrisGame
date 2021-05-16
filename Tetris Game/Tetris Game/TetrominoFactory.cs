@@ -8,17 +8,15 @@ namespace Tetris_Game
 {
     class TetrominoFactory
     {
-        public static List<Rectangle> shape;
-        public List<Rectangle> CreateShapeById(int shapeId)
+        
+        public static ITetromino CreateShapeById(int shapeId)
         {
             
 
             switch (shapeId)
             {
                 case 1:
-                    var iShape = new I_Shape();
-                    shape = iShape.GameBlock;
-                    break;
+                    return new I_Shape();
                 //case 2:
                 // return T_Shape.CreateShape();
                 // break;
@@ -39,9 +37,10 @@ namespace Tetris_Game
                 // break;
 
                 default:
-                    break;
+                    return new I_Shape(); ;
+                    
             }
-            return shape;
+            
 
         }
     }

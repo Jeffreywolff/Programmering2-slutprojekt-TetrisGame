@@ -8,9 +8,9 @@ namespace Tetris_Game
 {
     interface ITetromino
     {
-        public List<Shape> GameBlock { get; set; }
+        List<Rectangle> GameBlock { get; }
 
-        public string TetrominoName { get; set; }
+        string TetrominoName { get; }
 
 
     }
