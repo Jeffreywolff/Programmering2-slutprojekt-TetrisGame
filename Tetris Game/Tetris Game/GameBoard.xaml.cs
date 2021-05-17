@@ -24,16 +24,18 @@ namespace Tetris_Game
         public GameBoard()
         {
             InitializeComponent();
-        }   
+        }
+
+
 
         private void CreateTetrisGrid(int columns, int rows)
         {
-            
+
 
             for (int i = 0; i < columns; i++)
             {
                 boardGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                
+
             }
             for (int j = 0; j < rows; j++)
             {
@@ -62,7 +64,7 @@ namespace Tetris_Game
                 {
                     Rectangle rectangle = new Rectangle();
                     rectangle.Fill = blackBrush;
-                    
+
                     Grid.SetRow(rectangle, i);
                     Grid.SetColumn(rectangle, j);
                     boardGrid.Children.Add(rectangle);
@@ -78,20 +80,49 @@ namespace Tetris_Game
         {
             CreateTetrisGrid(10, 20);
             CreateSideBar();
+            gameTick();
 
         }
 
-
+        
         private void gameTick()
         {
+            
             var gameMech = new GameModel();
+            gameMech.getNextTetromino();
+            int iteration = 0;
+            foreach (var rect in gameMech.nextTetromino.GameBlock)
+            {
+
+                boardGrid.Children.Add(rect);
+                Grid.SetColumn(rect, iteration);
+                iteration++;
+            }
 
             while (true)
             {
+                int ye = 1;
+                Task.Delay(1000);
+
                 gameMech.getNextTetromino();
-                foreach
+                foreach (var rect in gameMech.nextTetromino.GameBlock)
+                {
+
+                    boardGrid.Children.Add(rect);
+                    Grid.SetRow(rect, ye);
+
+                }
+                
+                ye++;
+
+                // If statement which checks if the shape is touching any other shape
+                break;
+
+
             }
             
+
+
         }
 
         private void CreateSideBar()

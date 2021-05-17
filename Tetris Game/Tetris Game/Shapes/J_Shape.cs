@@ -8,8 +8,9 @@ namespace Tetris_Game.Shapes
 {
     class J_Shape : ITetromino
     {
+        private List<Rectangle> _gameBlock = new List<Rectangle>();
         private const string _tetrominoName = "J-Shape";
-        private List<Rectangle> _gameBlock;
+       
         List<Rectangle> ITetromino.GameBlock
         {
             get

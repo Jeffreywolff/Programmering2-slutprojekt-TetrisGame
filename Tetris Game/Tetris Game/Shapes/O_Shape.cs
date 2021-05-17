@@ -10,8 +10,8 @@ namespace Tetris_Game.Shapes
     class O_Shape : ITetromino
     {
 
+        private List<Rectangle> _gameBlock = new List<Rectangle>();
         private const string _tetrominoName = "O-Shape";
-        private List<Rectangle> _gameBlock;
         List<Rectangle> ITetromino.GameBlock
         {
             get
