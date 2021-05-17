@@ -9,6 +9,7 @@ namespace Tetris_Game
     {
 
         public ITetromino nextTetromino;
+        public ITetromino activeTetromino;
         public GameModel()
         {
             

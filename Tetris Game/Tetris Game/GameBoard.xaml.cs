@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Tetris_Game
 {
@@ -80,50 +81,93 @@ namespace Tetris_Game
         {
             CreateTetrisGrid(10, 20);
             CreateSideBar();
-            gameTick();
+            StartGame();
+            
+
+        }
+
+        GameModel gameModel = new GameModel();
+        private void StartGame()
+        {
+            DispatcherTimer gameTimer = new DispatcherTimer();
+            
+            gameTimer.Interval = TimeSpan.FromMilliseconds(500);
+            gameTimer.Tick += gameTick;
+            gameModel.getNextTetromino();
+            gameTimer.Start();
+            
+            
+
+            
+            
 
         }
 
         
-        private void gameTick()
+        private void gameTick(object sender, EventArgs e)
         {
-            
-            var gameMech = new GameModel();
-            gameMech.getNextTetromino();
-            int iteration = 0;
-            foreach (var rect in gameMech.nextTetromino.GameBlock)
+
+
+            bool activeBlock = false;
+            // Check if no active block, if so add next
+            if (gameModel.activeTetromino == null)
             {
-
-                boardGrid.Children.Add(rect);
-                Grid.SetColumn(rect, iteration);
-                iteration++;
-            }
-
-            while (true)
-            {
-                int ye = 1;
-                Task.Delay(1000);
-
-                gameMech.getNextTetromino();
-                foreach (var rect in gameMech.nextTetromino.GameBlock)
+                gameModel.activeTetromino = gameModel.nextTetromino;
+                int iteration = 0;
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
-
                     boardGrid.Children.Add(rect);
-                    Grid.SetRow(rect, ye);
+                    Grid.SetColumn(rect, iteration);
+                    iteration++;
+                }
 
+                gameModel.getNextTetromino();
+            }
+            else
+            {
+
+                // Check if shape have reached bottom, If bottom true activeTetromino = null. Enables Sliding motion
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    if (Grid.GetRow(rect) >= 19)
+                    {
+                        // bool bottomReached = true;
+                        gameModel.activeTetromino = null;
+                        break;
+                    }
+                    else
+                    {
+                        foreach (var rectangle in gameModel.activeTetromino.GameBlock)
+                        {
+                            Grid.SetRow(rectangle, Grid.GetRow(rectangle) + 1);
+                        }
+                    }
                 }
                 
-                ye++;
-
-                // If statement which checks if the shape is touching any other shape
-                break;
 
 
+                
+                
             }
+            
+            
+            
+            
+
+            
+            
+
+           
+            
+            
+
+            
             
 
 
         }
+
+
 
         private void CreateSideBar()
         {
