@@ -79,7 +79,18 @@ namespace Tetris_Game
             CreateTetrisGrid(10, 20);
             CreateSideBar();
 
+        }
+
+
+        private void gameTick()
+        {
             var gameMech = new GameModel();
+
+            while (true)
+            {
+                gameMech.getNextTetromino();
+                foreach
+            }
             
         }
 
@@ -102,6 +113,26 @@ namespace Tetris_Game
             scoreText.Foreground = whiteBrush;
             Grid.SetColumn(scoreText, 1);
             root.Children.Add(scoreText);
+
+        }
+
+        private void ArrowKeyUp()
+        {
+
+        }
+
+        private void ArrowKeyDown()
+        {
+
+        }
+
+        private void ArrowKeyLeft()
+        {
+
+        }
+
+        private void ArrowKeyRight()
+        {
 
         }
     }

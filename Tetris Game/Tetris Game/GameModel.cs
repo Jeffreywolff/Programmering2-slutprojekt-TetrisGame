@@ -8,11 +8,16 @@ namespace Tetris_Game
     class GameModel
     {
 
-        ITetromino nextTetromino;
+        public ITetromino nextTetromino;
         public GameModel()
         {
-            nextTetromino = Controller.GetRandomShape();
             
+            
+        }
+
+        public void getNextTetromino()
+        {
+            nextTetromino = GameController.GetRandomShape();
         }
 
         private void OrganizeShape(ITetromino shape)
@@ -21,24 +26,6 @@ namespace Tetris_Game
 
         }
 
-        private static void ArrowKeyUp()
-        {
-
-        }
-
-        private static void ArrowKeyDown()
-        {
-
-        }
-
-        private static void ArrowKeyLeft()
-        {
-
-        }
-
-        private static void ArrowKeyRight()
-        {
-
-        }
+        
     }
 }

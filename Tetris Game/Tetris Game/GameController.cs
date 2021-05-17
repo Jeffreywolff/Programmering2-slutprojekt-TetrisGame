@@ -5,7 +5,7 @@ using System.Windows.Shapes;
 
 namespace Tetris_Game
 {
-    class Controller
+    class GameController
     {
         
 
