@@ -10,10 +10,18 @@ namespace Tetris_Game
     {
         private const string _tetrominoName = "I-Shape";
         private List<Rectangle> _gameBlock = new List<Rectangle>();
-        List<Rectangle> ITetromino.GameBlock { 
-            get {
+
+        private int[,] shapePosition = new int[2, 4] {
+            {0, 0, 0, 0} ,   /*  initializers for row indexed by 0 */
+            {1, 1, 1, 1}   /*  initializers for row indexed by 1 */
+        };
+
+        List<Rectangle> ITetromino.GameBlock
+        {
+            get
+            {
                 return _gameBlock;
-            } 
+            }
         }
 
         string ITetromino.TetrominoName
@@ -24,7 +32,7 @@ namespace Tetris_Game
             }
         }
 
-        
+
         public I_Shape()
         {
             // The I-Block consist of four blue blocks in one column.
@@ -33,6 +41,8 @@ namespace Tetris_Game
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush lightBlueBrush = new SolidColorBrush(Color.FromRgb(0, 214, 251));
                 rectangle.Fill = lightBlueBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
 
             }

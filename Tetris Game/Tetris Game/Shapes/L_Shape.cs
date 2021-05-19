@@ -31,11 +31,13 @@ namespace Tetris_Game.Shapes
         public L_Shape()
         {
             // The L-Block consist of four orange blocks with the shape of a L.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush orangeBrush = new SolidColorBrush(Color.FromRgb(255, 108, 19));
                 rectangle.Fill = orangeBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
             }
         }

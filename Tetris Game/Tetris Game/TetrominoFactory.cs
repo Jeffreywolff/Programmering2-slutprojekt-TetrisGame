@@ -20,8 +20,8 @@ namespace Tetris_Game
                 //case 2:
                 // return T_Shape.CreateShape();
                 // break;
-                //case 3:
-                //return J_Shape.CreateShape();
+                case 3:
+                    return new J_Shape();
                 //break;
                 //case 4:
                 // return L_Shape.CreateShape();
@@ -37,8 +37,8 @@ namespace Tetris_Game
                 // break;
 
                 default:
-                    return new I_Shape(); ;
-                    
+                    return new J_Shape();
+
             }
             
 

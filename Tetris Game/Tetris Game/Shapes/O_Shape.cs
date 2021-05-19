@@ -31,11 +31,13 @@ namespace Tetris_Game.Shapes
         public O_Shape()
         {
             // The O-Block consist of four yellow blocks with the shape of an O.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush yellowBrush = new SolidColorBrush(Color.FromRgb(255, 206, 18));
                 rectangle.Fill = yellowBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
             }
         }

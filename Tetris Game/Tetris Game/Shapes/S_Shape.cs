@@ -32,11 +32,13 @@ namespace Tetris_Game.Shapes
         public S_Shape()
         {
             // The S-Block consist of four green blocks with the shape of an S.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush greenBrush = new SolidColorBrush(Color.FromRgb(102, 238, 17));
                 rectangle.Fill = greenBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
             }
         }

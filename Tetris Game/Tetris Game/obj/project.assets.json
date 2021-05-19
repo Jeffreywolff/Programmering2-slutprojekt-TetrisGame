@@ -528,19 +528,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jeffrey.wolff\\.nuget\\packages\\": {}
+    "C:\\Users\\Wolff\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jeffrey.wolff\\Documents\\GitHub\\Programmering2-slutprojekt-TetrisGame\\Tetris Game\\Tetris Game\\Tetris Game.csproj",
+      "projectUniqueName": "C:\\Users\\Wolff\\Documents\\Github\\School\\Programmering2-slutprojekt-TetrisGame\\Tetris Game\\Tetris Game\\Tetris Game.csproj",
       "projectName": "Tetris Game",
-      "projectPath": "C:\\Users\\Jeffrey.wolff\\Documents\\GitHub\\Programmering2-slutprojekt-TetrisGame\\Tetris Game\\Tetris Game\\Tetris Game.csproj",
-      "packagesPath": "C:\\Users\\Jeffrey.wolff\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jeffrey.wolff\\Documents\\GitHub\\Programmering2-slutprojekt-TetrisGame\\Tetris Game\\Tetris Game\\obj\\",
+      "projectPath": "C:\\Users\\Wolff\\Documents\\Github\\School\\Programmering2-slutprojekt-TetrisGame\\Tetris Game\\Tetris Game\\Tetris Game.csproj",
+      "packagesPath": "C:\\Users\\Wolff\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Wolff\\Documents\\Github\\School\\Programmering2-slutprojekt-TetrisGame\\Tetris Game\\Tetris Game\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Jeffrey.wolff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Wolff\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -552,6 +552,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -563,6 +564,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -587,7 +589,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

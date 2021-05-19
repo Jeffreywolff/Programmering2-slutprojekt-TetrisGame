@@ -23,12 +23,28 @@ namespace Tetris_Game
     /// </summary>
     public partial class GameBoard : Window
     {
-        private Grid boardGrid = new Grid();
+        private Grid gameGrid = new Grid();
         public GameBoard()
         {
             InitializeComponent();
+            
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            CreateTetrisGrid(10, 20);
+            CreateSideBar();
+            InitGameControlls();
+            StartGame();
+        }
+
+
+        private void InitGameControlls()
+        {
             this.KeyDown += new KeyEventHandler(ArrowKeyRightPressed);
             this.KeyDown += new KeyEventHandler(ArrowKeyLeftPressed);
+            this.KeyDown += new KeyEventHandler(ArrowKeyDownPressed);
         }
 
 
@@ -36,50 +52,39 @@ namespace Tetris_Game
         {
             for (int i = 0; i < columns; i++)
             {
-                boardGrid.ColumnDefinitions.Add(new ColumnDefinition());
-
-
+                gameGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
             for (int j = 0; j < rows; j++)
             {
-
-                boardGrid.RowDefinitions.Add(new RowDefinition());
-
+                gameGrid.RowDefinitions.Add(new RowDefinition());
             }
+
             //SolidColorBrush DarkgreyBrush = new SolidColorBrush(Color.FromRgb(48, 48, 48));
             SolidColorBrush blackBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
             //boardGrid.Background = DarkgreyBrush;
-            Grid.SetRow(boardGrid, 0);
-            Grid.SetColumn(boardGrid, 0);
+            Grid.SetRow(gameGrid, 0);
+            Grid.SetColumn(gameGrid, 0);
+            root.Children.Add(gameGrid);
 
-            root.Children.Add(boardGrid);
-
+            // Creates a rectangle for every x and y in boardGrid
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
                     Rectangle rectangle = new Rectangle();
                     rectangle.Fill = blackBrush;
-
+                    rectangle.StrokeThickness = 1;
+                    rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                     Grid.SetRow(rectangle, i);
                     Grid.SetColumn(rectangle, j);
-                    boardGrid.Children.Add(rectangle);
+                    gameGrid.Children.Add(rectangle);
 
 
                 }
             }
         }
 
-        private void root_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-            CreateTetrisGrid(10, 20);
-            CreateSideBar();
-            StartGame();
-            
-
-        }
 
         GameModel gameModel = new GameModel();
         private void StartGame()
@@ -133,6 +138,62 @@ namespace Tetris_Game
             }
         }
 
+        private void ArrowKeyDownPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            {
+
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    Grid.SetRow(rect, Grid.GetRow(rect) + 1);
+                }
+               
+
+            }
+        }
+
+        private void SetShapePosition(String shapeName)
+        {
+            int iteration = 0;
+            switch (shapeName)
+            {
+                case "I-Shape":
+                    
+                    foreach (var rect in gameModel.activeTetromino.GameBlock)
+                    {
+                        gameGrid.Children.Add(rect);
+                        Grid.SetColumn(rect, iteration);
+                        iteration++;
+                    }
+                    break;
+
+                case "J-Shape":
+                    
+                    foreach (var rect in gameModel.activeTetromino.GameBlock)
+                    {
+                        if (rect == gameModel.activeTetromino.GameBlock[3])
+                        {
+                            gameGrid.Children.Add(rect);
+                            Grid.SetColumn(rect, iteration - 1);
+                            Grid.SetRow(rect, Grid.GetRow(rect) + 1);
+                        }
+                        else
+                        {
+                            gameGrid.Children.Add(rect);
+                            Grid.SetColumn(rect, iteration);
+                            iteration++;
+                        }
+                        
+                    }
+                    break;
+
+                case "L-Shape":
+
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void gameTick(object sender, EventArgs e)
         {
@@ -141,13 +202,8 @@ namespace Tetris_Game
             if (gameModel.activeTetromino == null)
             {
                 gameModel.activeTetromino = gameModel.nextTetromino;
-                int iteration = 0;
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    boardGrid.Children.Add(rect);
-                    Grid.SetColumn(rect, iteration);
-                    iteration++;
-                }
+
+                SetShapePosition(gameModel.activeTetromino.TetrominoName);
 
                 gameModel.getNextTetromino();
             }
@@ -158,7 +214,7 @@ namespace Tetris_Game
                 // Check if shape have reached bottom, If bottom true activeTetromino = null. Enables Sliding motion
                 foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
-                    if (Grid.GetRow(rect) >= 19)
+                    if (Grid.GetRow(rect) >= 19 || Grid.GetRow(gameModel.activeTetromino.GameBlock[3]) >= 19)
                     {
                         // bool bottomReached = true;
                         gameModel.activeTetromino = null;

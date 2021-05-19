@@ -30,11 +30,13 @@ namespace Tetris_Game.Shapes
         public Z_Shape()
         {
             // The Z-Block consist of four red blocks with the shape of an Z.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush redBrush = new SolidColorBrush(Color.FromRgb(255, 25, 69));
                 rectangle.Fill = redBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
             }
         }

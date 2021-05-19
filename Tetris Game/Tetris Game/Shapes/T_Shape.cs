@@ -31,11 +31,13 @@ namespace Tetris_Game
         public T_Shape()
         {
             // The T-Block consist of four purple blocks with the shape of a T.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush purpleBrush = new SolidColorBrush(Color.FromRgb(173, 0, 250));
                 rectangle.Fill = purpleBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
             }
         }

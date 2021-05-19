@@ -31,11 +31,13 @@ namespace Tetris_Game.Shapes
         public J_Shape()
         {
             // The J-Block consist of four Darkblue blocks with the shape of a J.
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Rectangle rectangle = new Rectangle();
                 SolidColorBrush darkBlueBrush = new SolidColorBrush(Color.FromRgb(45, 0, 250));
                 rectangle.Fill = darkBlueBrush;
+                rectangle.StrokeThickness = 1;
+                rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
                 _gameBlock.Add(rectangle);
             }
         }
