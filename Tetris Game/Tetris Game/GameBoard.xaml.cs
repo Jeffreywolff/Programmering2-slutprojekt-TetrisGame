@@ -93,7 +93,7 @@ namespace Tetris_Game
             
         }
 
-        void ArrowKeyRightPressed(object sender, KeyEventArgs e)
+        private void ArrowKeyRightPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Right && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
@@ -114,7 +114,7 @@ namespace Tetris_Game
             // Set controlls in a switch? https://stackoverflow.com/questions/49790301/how-to-detect-when-arrow-key-down-is-pressed-c-sharp-wpf
         }
 
-        void ArrowKeyLeftPressed(object sender, KeyboardEventArgs e)
+        private void ArrowKeyLeftPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
@@ -132,6 +132,7 @@ namespace Tetris_Game
 
             }
         }
+
 
         private void gameTick(object sender, EventArgs e)
         {
