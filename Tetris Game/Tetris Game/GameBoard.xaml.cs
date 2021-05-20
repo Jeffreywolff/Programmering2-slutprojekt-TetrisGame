@@ -140,16 +140,33 @@ namespace Tetris_Game
 
         private void ArrowKeyDownPressed(object sender, KeyEventArgs e)
         {
+            if (gameModel.activeTetromino == null)
+                return;
+
             if (e.Key == Key.Down && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
 
                 foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
-                    Grid.SetRow(rect, Grid.GetRow(rect) + 1);
-                }
-               
+                    if (nextPosValid(rect))
+                    {
+                        // bool bottomReached = true;
+                        gameModel.activeTetromino = null;
+                        gameModel.shapeStillMovable = false;
+                        return;
+                    }
+                    if (gameModel.shapeStillMovable)
+                    { 
+                        Grid.SetRow(rect, Grid.GetRow(rect) + 1);
+                    }
+                }             
 
             }
+        }
+
+        private bool nextPosValid(Rectangle rect)
+        {
+            return Grid.GetRow(rect) >= 19;
         }
 
         private void SetShapePosition(String shapeName)
@@ -158,13 +175,25 @@ namespace Tetris_Game
             switch (shapeName)
             {
                 case "I-Shape":
-                    
-                    foreach (var rect in gameModel.activeTetromino.GameBlock)
+                    var apa = gameModel.activeTetromino.shapePosition.GetUpperBound(0);
+                    var bepa = gameModel.activeTetromino.shapePosition.GetUpperBound(1);
+                    for (int i = 0; i <= apa; i++)
                     {
-                        gameGrid.Children.Add(rect);
-                        Grid.SetColumn(rect, iteration);
-                        iteration++;
+                        for (int j = 0; j <= bepa; j++)
+                        {
+                            if (gameModel.activeTetromino.shapePosition[i, j] == 1)
+                            {
+                                var rect = gameModel.activeTetromino.GameBlock[iteration];
+                                Grid.SetColumn(rect, 4);
+                                Grid.SetRow(rect, iteration);
+                                gameGrid.Children.Add(rect);
+                                iteration++;
+                            }
+
+                        }
+
                     }
+
                     break;
 
                 case "J-Shape":
@@ -209,24 +238,21 @@ namespace Tetris_Game
             }
             else
             {
-                
-
                 // Check if shape have reached bottom, If bottom true activeTetromino = null. Enables Sliding motion
                 foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
-                    if (Grid.GetRow(rect) >= 19 || Grid.GetRow(gameModel.activeTetromino.GameBlock[3]) >= 19)
+                    // bool bottomReached = true;
+                    if (nextPosValid(rect))
                     {
-                        // bool bottomReached = true;
+                        
                         gameModel.activeTetromino = null;
                         gameModel.shapeStillMovable = false;
                         break;
+                        
                     }
                     else
                     {
-                        foreach (var rectangle in gameModel.activeTetromino.GameBlock)
-                        {
-                            Grid.SetRow(rectangle, Grid.GetRow(rectangle) + 1);
-                        }
+                        Grid.SetRow(rect, Grid.GetRow(rect) + 1);
                     }
                 }
 

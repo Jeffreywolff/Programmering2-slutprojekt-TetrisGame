@@ -11,7 +11,7 @@ namespace Tetris_Game
         private const string _tetrominoName = "I-Shape";
         private List<Rectangle> _gameBlock = new List<Rectangle>();
 
-        private int[,] shapePosition = new int[2, 4] {
+        private int[,] _shapePosition = new int[2, 4] {
             {0, 0, 0, 0} ,   /*  initializers for row indexed by 0 */
             {1, 1, 1, 1}   /*  initializers for row indexed by 1 */
         };
@@ -29,6 +29,14 @@ namespace Tetris_Game
             get
             {
                 return _tetrominoName;
+            }
+        }
+
+        int[,] ITetromino.shapePosition
+        {
+            get
+            {
+                return _shapePosition;
             }
         }
 

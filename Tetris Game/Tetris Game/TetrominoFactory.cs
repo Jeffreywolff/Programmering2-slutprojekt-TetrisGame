@@ -37,7 +37,7 @@ namespace Tetris_Game
                 // break;
 
                 default:
-                    return new J_Shape();
+                    return new I_Shape();
 
             }
             

@@ -12,7 +12,7 @@ namespace Tetris_Game
 
         string TetrominoName { get; }
 
-        int[,] shapePosition = { get; }
+        int[,] shapePosition { get; }
 
 
     }
