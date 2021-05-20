@@ -22,11 +22,6 @@ namespace Tetris_Game
             nextTetromino = GameController.GetRandomShape();
         }
 
-        private void OrganizeShape(ITetromino shape)
-        {
-
-
-        }
 
         
     }

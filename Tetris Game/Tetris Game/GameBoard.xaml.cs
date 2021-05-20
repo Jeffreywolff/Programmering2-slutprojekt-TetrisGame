@@ -73,6 +73,7 @@ namespace Tetris_Game
                 for (int j = 0; j < columns; j++)
                 {
                     Rectangle rectangle = new Rectangle();
+                    rectangle.Tag = "boardBg";
                     rectangle.Fill = blackBrush;
                     rectangle.StrokeThickness = 1;
                     rectangle.Stroke = new SolidColorBrush(Color.FromRgb(84, 84, 84));
@@ -157,16 +158,16 @@ namespace Tetris_Game
 
         private bool nextRowValid(Rectangle rect)
         {
-            foreach (var child in gameGrid.Children)
+            foreach (var child in gameGrid.Children.OfType<Rectangle>())
             {
-                if ()
+                if ((string)child.Tag != "boardBg")
                 {
+                    if (Grid.GetRow(child) == Grid.GetRow(rect) + 1 && Grid.GetColumn(child) == Grid.GetColumn(rect) + 1)
+                    {
+                        return false;
+                    }
 
                 }
-            }
-            if ((Grid.GetRow(rect)+1).(gameModel.nextTetromino.TetrominoName == null))
-            {
-                return false;
             }
             return !(Grid.GetRow(rect) >= 19);
         }
