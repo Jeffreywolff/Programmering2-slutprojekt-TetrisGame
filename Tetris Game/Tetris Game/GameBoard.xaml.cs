@@ -23,21 +23,25 @@ namespace Tetris_Game
     /// </summary>
     public partial class GameBoard : Window
     {
+        GameModel gameModel = new GameModel();
         private Grid gameGrid = new Grid();
+        private int[,] validGridPositions = new int[10, 20];
         public GameBoard()
         {
             InitializeComponent();
-            
+
         }
 
         private void root_Loaded(object sender, RoutedEventArgs e)
         {
 
             CreateTetrisGrid(10, 20);
+            InitiateValidGridPositions();
             CreateSideBar();
             InitGameControlls();
             StartGame();
         }
+
 
 
         private void InitGameControlls()
@@ -84,19 +88,29 @@ namespace Tetris_Game
 
                 }
             }
+
         }
 
+        private void InitiateValidGridPositions()
+        {
+            for (int i = 0; i < validGridPositions.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j < validGridPositions.GetLowerBound(1); j++)
+                {
+                    validGridPositions[i, j] = 0;
+                }
+            }
+        }
 
-        GameModel gameModel = new GameModel();
         private void StartGame()
         {
             DispatcherTimer gameTimer = new DispatcherTimer();
-            
+
             gameTimer.Interval = TimeSpan.FromMilliseconds(1000);
             gameTimer.Tick += gameTick;
             gameModel.getNextTetromino();
             gameTimer.Start();
-            
+
         }
 
         private void ArrowKeyRightPressed(object sender, KeyEventArgs e)
@@ -117,7 +131,7 @@ namespace Tetris_Game
                         Grid.SetColumn(rect, Grid.GetColumn(rect) + 1);
                     }
                 }
-                
+
             }
 
             // Set controlls in a switch? https://stackoverflow.com/questions/49790301/how-to-detect-when-arrow-key-down-is-pressed-c-sharp-wpf
@@ -158,17 +172,24 @@ namespace Tetris_Game
 
         private bool nextRowValid(Rectangle rect)
         {
-            foreach (var child in gameGrid.Children.OfType<Rectangle>())
-            {
-                if ((string)child.Tag != "boardBg")
-                {
-                    if (Grid.GetRow(child) == Grid.GetRow(rect) + 1 && Grid.GetColumn(child) == Grid.GetColumn(rect) + 1)
-                    {
-                        return false;
-                    }
+            updateAllValidPlacements();
+            int getRectCol = Grid.GetColumn(rect);
+            int getRectRow = Grid.GetRow(rect);
 
-                }
+            if (validGridPositions[getRectCol, getRectRow + 1] == 1)
+            {
+                return false;
             }
+            //foreach (var child in gameGrid.Children.OfType<Rectangle>())
+            //{
+
+            //    if ((string)child.Tag != "boardBg")
+            //    {
+
+
+
+            //    }
+            //}
             return !(Grid.GetRow(rect) >= 19);
         }
 
@@ -200,7 +221,7 @@ namespace Tetris_Game
                     break;
 
                 case "J-Shape":
-                    
+
                     foreach (var rect in gameModel.activeTetromino.GameBlock)
                     {
                         if (rect == gameModel.activeTetromino.GameBlock[3])
@@ -215,7 +236,7 @@ namespace Tetris_Game
                             Grid.SetColumn(rect, iteration);
                             iteration++;
                         }
-                        
+
                     }
                     break;
 
@@ -229,10 +250,11 @@ namespace Tetris_Game
 
         private void gameTick(object sender, EventArgs e)
         {
-            
+
             // Check if no active block, if so add next
             if (gameModel.activeTetromino == null)
             {
+                updateAllValidPlacements();
                 gameModel.activeTetromino = gameModel.nextTetromino;
                 SetShapePosition(gameModel.activeTetromino.TetrominoName);
                 gameModel.getNextTetromino();
@@ -244,6 +266,31 @@ namespace Tetris_Game
                 moveItemDown();
 
             }
+
+        }
+
+        private void updateAllValidPlacements()
+        {
+            foreach (var child in gameGrid.Children.OfType<Rectangle>())
+            {
+
+                if ((string)child.Tag != "boardBg")
+                {
+                    if (gameModel.activeTetromino != null)
+                    {
+                        foreach (var rect in gameModel.activeTetromino.GameBlock)
+                        {
+                            validGridPositions[Grid.GetColumn(rect), Grid.GetRow(rect)] = 2;
+                        }
+                    }
+                    else
+                    {
+                        validGridPositions[Grid.GetColumn(child), Grid.GetRow(child)] = 1;
+                    }
+                    
+                }
+            }
+
 
         }
 
@@ -262,7 +309,7 @@ namespace Tetris_Game
                     gameModel.activeTetromino = null;
                     gameModel.shapeStillMovable = false;
                 }
-            }            
+            }
         }
 
         private void CreateSideBar()
@@ -297,7 +344,7 @@ namespace Tetris_Game
 
         }
 
-        
+
 
         private void ArrowKeyLeft()
         {
