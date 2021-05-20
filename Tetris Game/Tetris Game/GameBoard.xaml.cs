@@ -100,6 +100,9 @@ namespace Tetris_Game
 
         private void ArrowKeyRightPressed(object sender, KeyEventArgs e)
         {
+            if (gameModel.activeTetromino == null)
+                return;
+
             if (e.Key == Key.Right && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
                 if (Grid.GetColumn(gameModel.activeTetromino.GameBlock[3]) >= 9)
@@ -121,6 +124,9 @@ namespace Tetris_Game
 
         private void ArrowKeyLeftPressed(object sender, KeyEventArgs e)
         {
+            if (gameModel.activeTetromino == null)
+                return;
+
             if (e.Key == Key.Left && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
                 if (Grid.GetColumn(gameModel.activeTetromino.GameBlock[0]) <= 0)
@@ -143,30 +149,26 @@ namespace Tetris_Game
             if (gameModel.activeTetromino == null)
                 return;
 
-            if (e.Key == Key.Down && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            else if (e.Key == Key.Down && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
-
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    if (nextPosValid(rect))
-                    {
-                        // bool bottomReached = true;
-                        gameModel.activeTetromino = null;
-                        gameModel.shapeStillMovable = false;
-                        return;
-                    }
-                    if (gameModel.shapeStillMovable)
-                    { 
-                        Grid.SetRow(rect, Grid.GetRow(rect) + 1);
-                    }
-                }             
-
+                moveItemDown();
             }
         }
 
-        private bool nextPosValid(Rectangle rect)
+        private bool nextRowValid(Rectangle rect)
         {
-            return Grid.GetRow(rect) >= 19;
+            foreach (var child in gameGrid.Children)
+            {
+                if ()
+                {
+
+                }
+            }
+            if ((Grid.GetRow(rect)+1).(gameModel.nextTetromino.TetrominoName == null))
+            {
+                return false;
+            }
+            return !(Grid.GetRow(rect) >= 19);
         }
 
         private void SetShapePosition(String shapeName)
@@ -226,41 +228,41 @@ namespace Tetris_Game
 
         private void gameTick(object sender, EventArgs e)
         {
-            gameModel.shapeStillMovable = true;
+            
             // Check if no active block, if so add next
             if (gameModel.activeTetromino == null)
             {
                 gameModel.activeTetromino = gameModel.nextTetromino;
-
                 SetShapePosition(gameModel.activeTetromino.TetrominoName);
-
                 gameModel.getNextTetromino();
+                gameModel.shapeStillMovable = true;
             }
             else
             {
                 // Check if shape have reached bottom, If bottom true activeTetromino = null. Enables Sliding motion
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    // bool bottomReached = true;
-                    if (nextPosValid(rect))
-                    {
-                        
-                        gameModel.activeTetromino = null;
-                        gameModel.shapeStillMovable = false;
-                        break;
-                        
-                    }
-                    else
-                    {
-                        Grid.SetRow(rect, Grid.GetRow(rect) + 1);
-                    }
-                }
+                moveItemDown();
 
             }
 
         }
 
+        private void moveItemDown()
+        {
+            foreach (var rect in gameModel.activeTetromino.GameBlock)
+            {
+                // bool bottomReached = true;
+                if (nextRowValid(rect))
+                {
+                    Grid.SetRow(rect, Grid.GetRow(rect) + 1);
+                }
 
+                if (!nextRowValid(rect))
+                {
+                    gameModel.activeTetromino = null;
+                    gameModel.shapeStillMovable = false;
+                }
+            }            
+        }
 
         private void CreateSideBar()
         {
