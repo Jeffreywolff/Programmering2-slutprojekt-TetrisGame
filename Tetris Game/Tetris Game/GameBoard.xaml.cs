@@ -134,7 +134,6 @@ namespace Tetris_Game
 
             }
 
-            // Set controlls in a switch? https://stackoverflow.com/questions/49790301/how-to-detect-when-arrow-key-down-is-pressed-c-sharp-wpf
         }
 
         private void ArrowKeyLeftPressed(object sender, KeyEventArgs e)
@@ -172,25 +171,24 @@ namespace Tetris_Game
 
         private bool nextRowValid(Rectangle rect)
         {
-            updateAllValidPlacements();
+            
             int getRectCol = Grid.GetColumn(rect);
             int getRectRow = Grid.GetRow(rect);
 
-            if (validGridPositions[getRectCol, getRectRow + 1] == 1)
+            if (getRectRow >= 19)
+            {
+
+                return false;
+            }
+            else if (validGridPositions[getRectCol, getRectRow + 1] == 1)
             {
                 return false;
             }
-            //foreach (var child in gameGrid.Children.OfType<Rectangle>())
-            //{
-
-            //    if ((string)child.Tag != "boardBg")
-            //    {
-
-
-
-            //    }
-            //}
-            return !(Grid.GetRow(rect) >= 19);
+            else
+            {
+                return true;
+            }
+            
         }
 
         private void SetShapePosition(String shapeName)
@@ -283,11 +281,15 @@ namespace Tetris_Game
                             validGridPositions[Grid.GetColumn(rect), Grid.GetRow(rect)] = 2;
                         }
                     }
-                    else
+                    else if (gameModel.activeTetromino == null)
                     {
                         validGridPositions[Grid.GetColumn(child), Grid.GetRow(child)] = 1;
                     }
                     
+                }
+                else
+                {
+                    validGridPositions[Grid.GetColumn(child), Grid.GetRow(child)] = 0;
                 }
             }
 
@@ -331,28 +333,6 @@ namespace Tetris_Game
             scoreText.Foreground = whiteBrush;
             Grid.SetColumn(scoreText, 1);
             root.Children.Add(scoreText);
-
-        }
-
-        private void ArrowKeyUp()
-        {
-
-        }
-
-        private void ArrowKeyDown()
-        {
-
-        }
-
-
-
-        private void ArrowKeyLeft()
-        {
-
-        }
-
-        private void ArrowKeyRight()
-        {
 
         }
     }
