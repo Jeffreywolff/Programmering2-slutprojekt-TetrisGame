@@ -10,6 +10,7 @@ namespace Tetris_Game.Shapes
     {
         private List<Rectangle> _gameBlock = new List<Rectangle>();
         private const string _tetrominoName = "Z-Shape";
+
         private int[,] _shapePosition = new int[2, 4] {
             {0, 0, 1, 1} ,   /*  initializers for row indexed by 0 */
             {0, 1, 1, 0}   /*  initializers for row indexed by 1 */

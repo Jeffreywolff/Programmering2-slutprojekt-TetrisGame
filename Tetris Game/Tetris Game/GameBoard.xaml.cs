@@ -196,6 +196,40 @@ namespace Tetris_Game
             }
         }
 
+        private void ArrowKeyUpPressed(object sender, KeyEventArgs e)
+        {
+            if (gameModel.activeTetromino == null)
+                return;
+
+            else if (e.Key == Key.Up && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            {
+                gameModel.currentPosition = RotateShapeMatrix(gameModel.currentPosition, 4);
+                UpdateShapeMatrix();
+            }
+        }
+
+        private void UpdateShapeMatrix()
+        {
+            var apa = gameModel.currentPosition.GetUpperBound(0);
+            var bepa = gameModel.currentPosition.GetUpperBound(1);
+            int iteration = 0;
+            for (int i = 0; i <= apa; i++)
+            {
+                for (int j = 0; j <= bepa; j++)
+                {
+                    if (gameModel.activeTetromino.shapePosition[i, j] == 1)
+                    {
+                        var rect = gameModel.activeTetromino.GameBlock[iteration];
+                        Grid.SetRow(rect, Grid.GetRow(rect) + i);
+                        Grid.SetColumn(rect, Grid.GetColumn(rect) + j);
+                        
+                        iteration++;
+                    }
+
+                }
+
+            }
+        }
 
         private bool NextColumnValid(int direction)
         {
@@ -212,16 +246,13 @@ namespace Tetris_Game
                     continue;
                 }
             }
-
             return true;
         }
 
         private bool NextRowValid(Rectangle rect)
         {
-
             int getRectCol = Grid.GetColumn(rect);
             int getRectRow = Grid.GetRow(rect);
-
 
             if (getRectRow >= 19 || validGridPositions[getRectCol, getRectRow + 1] == 1)
             {
@@ -231,7 +262,6 @@ namespace Tetris_Game
             {
                 return true;
             }
-
         }
 
         private void SetShapePosition(String shapeName)
@@ -249,8 +279,8 @@ namespace Tetris_Game
                             if (gameModel.activeTetromino.shapePosition[i, j] == 1)
                             {
                                 var rect = gameModel.activeTetromino.GameBlock[iteration];
-                                Grid.SetColumn(rect, 4);
-                                Grid.SetRow(rect, iteration);
+                                Grid.SetRow(rect, i);
+                                Grid.SetColumn(rect, j);
                                 gameGrid.Children.Add(rect);
                                 iteration++;
                             }
@@ -289,6 +319,25 @@ namespace Tetris_Game
             }
         }
 
+        private int[,] RotateShapeMatrix(int[,] matrix, int n)
+        {
+           
+            int[,] ret = new int[n, n];
+
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < n; ++j)
+                {
+                    ret[i, j] = matrix[n - j - 1, i];
+                }
+            }
+
+            return ret;
+
+
+
+        }
+
         private void gameTick(object sender, EventArgs e)
         {
 
@@ -300,6 +349,7 @@ namespace Tetris_Game
                 SetShapePosition(gameModel.activeTetromino.TetrominoName);
                 gameModel.getNextTetromino();
                 gameModel.shapeStillMovable = true;
+                gameModel.currentPosition = gameModel.activeTetromino.shapePosition;
             }
             else
             {

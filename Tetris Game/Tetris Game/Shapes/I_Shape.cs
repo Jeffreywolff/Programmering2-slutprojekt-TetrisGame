@@ -11,9 +11,11 @@ namespace Tetris_Game
         private const string _tetrominoName = "I-Shape";
         private List<Rectangle> _gameBlock = new List<Rectangle>();
 
-        private int[,] _shapePosition = new int[2, 4] {
+        private int[,] _shapePosition = new int[4, 4] {
             {0, 0, 0, 0} ,   /*  initializers for row indexed by 0 */
-            {1, 1, 1, 1}   /*  initializers for row indexed by 1 */
+            {1, 1, 1, 1} ,
+            {0, 0, 0, 0} ,
+            {0, 0, 0, 0} ,   /*  initializers for row indexed by 1 */
         };
 
         List<Rectangle> ITetromino.GameBlock
