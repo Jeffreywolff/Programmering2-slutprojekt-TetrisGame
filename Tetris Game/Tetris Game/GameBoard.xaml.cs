@@ -120,21 +120,33 @@ namespace Tetris_Game
 
             if (e.Key == Key.Right && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
-                if (Grid.GetColumn(gameModel.activeTetromino.GameBlock[3]) >= 9)
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
-                    Console.WriteLine("Out of Bounds");
-                }
-                else
-                {
-                    foreach (var rect in gameModel.activeTetromino.GameBlock)
+                    int getRectCol = Grid.GetColumn(rect);
+
+                    if (getRectCol >= 9)
                     {
-                        Grid.SetColumn(rect, Grid.GetColumn(rect) + 1);
+                        return;
                     }
+                    else if (NextColumnValid(1))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Out of Bounds");
+                        return;
+                    }
+                }
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    Grid.SetColumn(rect, Grid.GetColumn(rect) + 1);
                 }
 
             }
 
         }
+
 
         private void ArrowKeyLeftPressed(object sender, KeyEventArgs e)
         {
@@ -143,17 +155,32 @@ namespace Tetris_Game
 
             if (e.Key == Key.Left && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
-                if (Grid.GetColumn(gameModel.activeTetromino.GameBlock[0]) <= 0)
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
-                    Console.WriteLine("Out of Bounds");
-                }
-                else
-                {
-                    foreach (var rect in gameModel.activeTetromino.GameBlock)
+                    int getRectCol = Grid.GetColumn(rect);
+                    
+                    if (getRectCol <= 0)
                     {
-                        Grid.SetColumn(rect, Grid.GetColumn(rect) - 1);
+                        return;
+                    }
+                    else if (NextColumnValid(-1))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        
+                        Console.WriteLine("Out of Bounds");
+                        return;
                     }
                 }
+
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    Grid.SetColumn(rect, Grid.GetColumn(rect) - 1);
+                }
+                
+
 
             }
         }
@@ -169,18 +196,34 @@ namespace Tetris_Game
             }
         }
 
-        private bool nextRowValid(Rectangle rect)
+
+        private bool NextColumnValid(int direction)
         {
-            
+            foreach (var rect in gameModel.activeTetromino.GameBlock)
+            {
+                int getRectCol = Grid.GetColumn(rect);
+                int getRectRow = Grid.GetRow(rect);
+                if (validGridPositions[getRectCol + direction, getRectRow] == 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            return true;
+        }
+
+        private bool NextRowValid(Rectangle rect)
+        {
+
             int getRectCol = Grid.GetColumn(rect);
             int getRectRow = Grid.GetRow(rect);
 
-            if (getRectRow >= 19)
-            {
 
-                return false;
-            }
-            else if (validGridPositions[getRectCol, getRectRow + 1] == 1)
+            if (getRectRow >= 19 || validGridPositions[getRectCol, getRectRow + 1] == 1)
             {
                 return false;
             }
@@ -188,7 +231,7 @@ namespace Tetris_Game
             {
                 return true;
             }
-            
+
         }
 
         private void SetShapePosition(String shapeName)
@@ -285,7 +328,7 @@ namespace Tetris_Game
                     {
                         validGridPositions[Grid.GetColumn(child), Grid.GetRow(child)] = 1;
                     }
-                    
+
                 }
                 else
                 {
@@ -301,12 +344,12 @@ namespace Tetris_Game
             foreach (var rect in gameModel.activeTetromino.GameBlock)
             {
                 // bool bottomReached = true;
-                if (nextRowValid(rect))
+                if (NextRowValid(rect))
                 {
                     Grid.SetRow(rect, Grid.GetRow(rect) + 1);
                 }
 
-                if (!nextRowValid(rect))
+                if (!NextRowValid(rect))
                 {
                     gameModel.activeTetromino = null;
                     gameModel.shapeStillMovable = false;
