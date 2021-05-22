@@ -29,6 +29,7 @@ namespace Tetris_Game
         public GameBoard()
         {
             InitializeComponent();
+            InitiateValidGridPositions();
 
         }
 
@@ -36,7 +37,6 @@ namespace Tetris_Game
         {
 
             CreateTetrisGrid(10, 20);
-            InitiateValidGridPositions();
             CreateSideBar();
             InitGameControlls();
             StartGame();
