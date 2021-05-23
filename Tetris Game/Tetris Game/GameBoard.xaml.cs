@@ -122,27 +122,29 @@ namespace Tetris_Game
             {
                 foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
+                    
                     int getRectCol = Grid.GetColumn(rect);
 
                     if (getRectCol >= 9)
                     {
                         return;
                     }
-                    else if (NextColumnValid(1))
+                    else if (NextColumnValid(1, rect))
                     {
                         continue;
                     }
                     else
                     {
+
                         Console.WriteLine("Out of Bounds");
                         return;
                     }
                 }
+
                 foreach (var rect in gameModel.activeTetromino.GameBlock)
                 {
                     Grid.SetColumn(rect, Grid.GetColumn(rect) + 1);
                 }
-
             }
 
         }
@@ -163,7 +165,7 @@ namespace Tetris_Game
                     {
                         return;
                     }
-                    else if (NextColumnValid(-1))
+                    else if (NextColumnValid(-1, rect))
                     {
                         continue;
                     }
@@ -179,9 +181,6 @@ namespace Tetris_Game
                 {
                     Grid.SetColumn(rect, Grid.GetColumn(rect) - 1);
                 }
-                
-
-
             }
         }
 
@@ -231,10 +230,9 @@ namespace Tetris_Game
             }
         }
 
-        private bool NextColumnValid(int direction)
+        private bool NextColumnValid(int direction, Rectangle rect)
         {
-            foreach (var rect in gameModel.activeTetromino.GameBlock)
-            {
+            
                 int getRectCol = Grid.GetColumn(rect);
                 int getRectRow = Grid.GetRow(rect);
                 if (validGridPositions[getRectCol + direction, getRectRow] == 1)
@@ -243,10 +241,10 @@ namespace Tetris_Game
                 }
                 else
                 {
-                    continue;
+                    return true;
                 }
-            }
-            return true;
+            
+            
         }
 
         private bool NextRowValid(Rectangle rect)
@@ -396,7 +394,7 @@ namespace Tetris_Game
                 // bool bottomReached = true;
                 if (NextRowValid(rect))
                 {
-                    Grid.SetRow(rect, Grid.GetRow(rect) + 1);
+                    continue;
                 }
 
                 if (!NextRowValid(rect))
@@ -405,6 +403,15 @@ namespace Tetris_Game
                     gameModel.shapeStillMovable = false;
                 }
             }
+
+            if (gameModel.activeTetromino != null)
+            {
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    Grid.SetRow(rect, Grid.GetRow(rect) + 1);
+                }
+            }
+            
         }
 
         private void CreateSideBar()
