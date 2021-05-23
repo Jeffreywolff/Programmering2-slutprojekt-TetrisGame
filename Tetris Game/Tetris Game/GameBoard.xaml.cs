@@ -49,6 +49,7 @@ namespace Tetris_Game
             this.KeyDown += new KeyEventHandler(ArrowKeyRightPressed);
             this.KeyDown += new KeyEventHandler(ArrowKeyLeftPressed);
             this.KeyDown += new KeyEventHandler(ArrowKeyDownPressed);
+            this.KeyDown += new KeyEventHandler(ArrowKeyUpPressed);
         }
 
 
@@ -102,125 +103,58 @@ namespace Tetris_Game
             }
         }
 
+        private void CreateSideBar()
+        {
+            var sideRectangle = new Rectangle();
+            SolidColorBrush blueBrush = new SolidColorBrush(Color.FromRgb(66, 135, 245));
+            sideRectangle.Fill = blueBrush;
+            Grid.SetColumn(sideRectangle, 1);
+            root.Children.Add(sideRectangle);
+
+            var scoreText = new TextBlock();
+            SolidColorBrush blackBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            SolidColorBrush whiteBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            scoreText.Text = "000";
+            scoreText.FontSize = 30;
+            scoreText.Width = 70;
+            scoreText.Height = 30;
+            scoreText.Background = blackBrush;
+            scoreText.Foreground = whiteBrush;
+            Grid.SetColumn(scoreText, 1);
+            root.Children.Add(scoreText);
+
+        }
         private void StartGame()
         {
             DispatcherTimer gameTimer = new DispatcherTimer();
-
-            gameTimer.Interval = TimeSpan.FromMilliseconds(1000);
+            gameTimer.Interval = TimeSpan.FromMilliseconds(800);
             gameTimer.Tick += gameTick;
             gameModel.getNextTetromino();
             gameTimer.Start();
 
         }
 
-        private void ArrowKeyRightPressed(object sender, KeyEventArgs e)
-        {
-            if (gameModel.activeTetromino == null)
-                return;
-
-            if (e.Key == Key.Right && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
-            {
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    
-                    int getRectCol = Grid.GetColumn(rect);
-
-                    if (getRectCol >= 9)
-                    {
-                        return;
-                    }
-                    else if (NextColumnValid(1, rect))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-
-                        Console.WriteLine("Out of Bounds");
-                        return;
-                    }
-                }
-
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    Grid.SetColumn(rect, Grid.GetColumn(rect) + 1);
-                }
-            }
-
-        }
-
-
-        private void ArrowKeyLeftPressed(object sender, KeyEventArgs e)
-        {
-            if (gameModel.activeTetromino == null)
-                return;
-
-            if (e.Key == Key.Left && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
-            {
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    int getRectCol = Grid.GetColumn(rect);
-                    
-                    if (getRectCol <= 0)
-                    {
-                        return;
-                    }
-                    else if (NextColumnValid(-1, rect))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        
-                        Console.WriteLine("Out of Bounds");
-                        return;
-                    }
-                }
-
-                foreach (var rect in gameModel.activeTetromino.GameBlock)
-                {
-                    Grid.SetColumn(rect, Grid.GetColumn(rect) - 1);
-                }
-            }
-        }
-
-        private void ArrowKeyDownPressed(object sender, KeyEventArgs e)
-        {
-            if (gameModel.activeTetromino == null)
-                return;
-
-            else if (e.Key == Key.Down && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
-            {
-                moveItemDown();
-            }
-        }
-
-        private void ArrowKeyUpPressed(object sender, KeyEventArgs e)
-        {
-            if (gameModel.activeTetromino == null)
-                return;
-
-            else if (e.Key == Key.Up && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
-            {
-                gameModel.currentPosition = RotateShapeMatrix(gameModel.currentPosition, 4);
-                UpdateShapeMatrix();
-            }
-        }
+        
 
         private void UpdateShapeMatrix()
         {
             var apa = gameModel.currentPosition.GetUpperBound(0);
             var bepa = gameModel.currentPosition.GetUpperBound(1);
+
+            
             int iteration = 0;
-            for (int i = 0; i <= apa; i++)
+            for (int i = 0; i < apa + 1; i++)
             {
-                for (int j = 0; j <= bepa; j++)
+                for (int j = 0; j < bepa + 1; j++)
                 {
-                    if (gameModel.activeTetromino.shapePosition[i, j] == 1)
+                    if (gameModel.currentPosition[i, j] == 1)
                     {
                         var rect = gameModel.activeTetromino.GameBlock[iteration];
-                        Grid.SetRow(rect, Grid.GetRow(rect) + i);
-                        Grid.SetColumn(rect, Grid.GetColumn(rect) + j);
+                        var rectRow = Grid.GetRow(rect);
+                        var rectCol = Grid.GetColumn(rect);
+                        var 
+                        Grid.SetRow(rect, );
+                        Grid.SetColumn(rect, );
                         
                         iteration++;
                     }
@@ -262,7 +196,7 @@ namespace Tetris_Game
             }
         }
 
-        private void SetShapePosition(String shapeName)
+        private void SetShapePosition(string shapeName)
         {
             int iteration = 0;
             switch (shapeName)
@@ -317,23 +251,20 @@ namespace Tetris_Game
             }
         }
 
-        private int[,] RotateShapeMatrix(int[,] matrix, int n)
+        private int[,] RotateShapeMatrixClockwise(int[,] matrix, int N)
         {
-           
-            int[,] ret = new int[n, n];
+            int[,] ret = new int[N, N];
+            int outerDimIndex = matrix.GetUpperBound(0);
+            int innerDimIndex = matrix.GetUpperBound(1);
 
-            for (int i = 0; i < n; ++i)
+            for (int i = 0; i < outerDimIndex + 1; i++)
             {
-                for (int j = 0; j < n; ++j)
+                for (int j = 0; j < innerDimIndex + 1; j++)
                 {
-                    ret[i, j] = matrix[n - j - 1, i];
+                    ret[i, j] = matrix[outerDimIndex - j, i];
                 }
             }
-
             return ret;
-
-
-
         }
 
         private void gameTick(object sender, EventArgs e)
@@ -414,26 +345,98 @@ namespace Tetris_Game
             
         }
 
-        private void CreateSideBar()
+        private void ArrowKeyRightPressed(object sender, KeyEventArgs e)
         {
-            var sideRectangle = new Rectangle();
-            SolidColorBrush blueBrush = new SolidColorBrush(Color.FromRgb(66, 135, 245));
-            sideRectangle.Fill = blueBrush;
-            Grid.SetColumn(sideRectangle, 1);
-            root.Children.Add(sideRectangle);
+            if (gameModel.activeTetromino == null)
+                return;
 
-            var scoreText = new TextBlock();
-            SolidColorBrush blackBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            SolidColorBrush whiteBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            scoreText.Text = "000";
-            scoreText.FontSize = 30;
-            scoreText.Width = 70;
-            scoreText.Height = 30;
-            scoreText.Background = blackBrush;
-            scoreText.Foreground = whiteBrush;
-            Grid.SetColumn(scoreText, 1);
-            root.Children.Add(scoreText);
+            if (e.Key == Key.Right && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            {
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+
+                    int getRectCol = Grid.GetColumn(rect);
+
+                    if (getRectCol >= 9)
+                    {
+                        return;
+                    }
+                    else if (NextColumnValid(1, rect))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("Out of Bounds");
+                        return;
+                    }
+                }
+
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    Grid.SetColumn(rect, Grid.GetColumn(rect) + 1);
+                }
+            }
 
         }
+
+        private void ArrowKeyLeftPressed(object sender, KeyEventArgs e)
+        {
+            if (gameModel.activeTetromino == null)
+                return;
+
+            if (e.Key == Key.Left && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            {
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    int getRectCol = Grid.GetColumn(rect);
+
+                    if (getRectCol <= 0)
+                    {
+                        return;
+                    }
+                    else if (NextColumnValid(-1, rect))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+
+                        Console.WriteLine("Out of Bounds");
+                        return;
+                    }
+                }
+
+                foreach (var rect in gameModel.activeTetromino.GameBlock)
+                {
+                    Grid.SetColumn(rect, Grid.GetColumn(rect) - 1);
+                }
+            }
+        }
+
+        private void ArrowKeyDownPressed(object sender, KeyEventArgs e)
+        {
+            if (gameModel.activeTetromino == null)
+                return;
+
+            else if (e.Key == Key.Down && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            {
+                moveItemDown();
+            }
+        }
+
+        private void ArrowKeyUpPressed(object sender, KeyEventArgs e)
+        {
+            if (gameModel.activeTetromino == null)
+                return;
+
+            else if (e.Key == Key.Up && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
+            {
+                gameModel.currentPosition = RotateShapeMatrixClockwise(gameModel.currentPosition, 4);
+                UpdateShapeMatrix();
+            }
+        }
+
     }
 }
