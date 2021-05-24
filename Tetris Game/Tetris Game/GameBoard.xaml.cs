@@ -138,30 +138,58 @@ namespace Tetris_Game
 
         private void UpdateShapeMatrix()
         {
+            
+            if (gameModel.activeTetromino.TetrominoName == "O-Shape")
+            {
+                return;
+            }
+            int iteration = 0;
             var upperBoundFirstDim = gameModel.currentMatrix.GetUpperBound(0);
             var upperBoundSecondDim = gameModel.currentMatrix.GetUpperBound(1);
-
             
-            int iteration = 0;
-            for (int i = 0; i < upperBoundFirstDim + 1; i++)
+            var optimalRow = Grid.GetRow(gameModel.activeTetromino.GameBlock[1]);
+            var optimalColumn = Grid.GetColumn(gameModel.activeTetromino.GameBlock[2]);
+
+            for (int i = 0; i <= upperBoundFirstDim; i++)
             {
-                for (int j = 0; j < upperBoundSecondDim + 1; j++)
+                for (int j = 0; j <= upperBoundSecondDim; j++)
                 {
                     if (gameModel.currentMatrix[i, j] == 1)
                     {
                         var rect = gameModel.activeTetromino.GameBlock[iteration];
                         var rectRow = Grid.GetRow(rect);
                         var rectCol = Grid.GetColumn(rect);
-                        // put if statement to avoid errors at walls
-                        Grid.SetRow(rect, i + rectRow - j);
-                        Grid.SetColumn(rect, j + rectCol - i);
-                        
-                        iteration++;
-                    }
 
+                        if ((i + optimalRow - 1) < 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Grid.SetRow(rect, (i + optimalRow - 1));
+                        }
+
+                        if ((j + optimalColumn - 2) < 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Grid.SetColumn(rect, (j + optimalColumn - 2));
+                        }
+                        iteration++;
+
+
+                    }
+                    
                 }
 
             }
+
+            
+            
+
+
         }
 
         private bool NextColumnValid(int direction, Rectangle rect)
@@ -199,7 +227,6 @@ namespace Tetris_Game
         private void InitializePositionAfterMatrix()
         {
             int iteration = 0;
-
             var upperBoundFirstDim = gameModel.activeTetromino.shapePosition.GetUpperBound(0);
             var upperBoundSecondDim = gameModel.activeTetromino.shapePosition.GetUpperBound(1);
             for (int i = 0; i <= upperBoundFirstDim; i++)
