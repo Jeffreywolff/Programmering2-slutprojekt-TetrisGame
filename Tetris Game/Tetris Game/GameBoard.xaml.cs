@@ -152,9 +152,9 @@ namespace Tetris_Game
                         var rect = gameModel.activeTetromino.GameBlock[iteration];
                         var rectRow = Grid.GetRow(rect);
                         var rectCol = Grid.GetColumn(rect);
-                        var 
-                        Grid.SetRow(rect, );
-                        Grid.SetColumn(rect, );
+                        // put if statement to avoid errors at walls
+                        Grid.SetRow(rect, i + rectRow - j);
+                        Grid.SetColumn(rect, j + rectCol - i);
                         
                         iteration++;
                     }
