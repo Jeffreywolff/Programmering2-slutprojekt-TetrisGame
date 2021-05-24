@@ -11,7 +11,7 @@ namespace Tetris_Game
         public ITetromino nextTetromino;
         public ITetromino activeTetromino;
         public bool shapeStillMovable = true;
-        public int[,] currentPosition;
+        public int[,] currentMatrix;
         
         public GameModel()
         {

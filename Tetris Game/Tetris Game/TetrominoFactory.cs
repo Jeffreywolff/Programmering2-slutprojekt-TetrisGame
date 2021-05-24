@@ -17,24 +17,24 @@ namespace Tetris_Game
             {
                 case 1:
                     return new I_Shape();
-                //case 2:
-                // return T_Shape.CreateShape();
-                // break;
+                    
+                case 2:
+                    return new T_Shape();
+                   
                 case 3:
                     return new J_Shape();
-                //break;
-                //case 4:
-                // return L_Shape.CreateShape();
-                // break;
-                //case 5:
-                //return O_Shape.CreateShape();
-                //break;
-                //case 6:
-                //return Z_Shape.CreateShape();
-                //break;
-                //case 7:
-                // return S_Shape.CreateShape();
-                // break;
+                    
+                case 4:
+                    return new L_Shape();
+                    
+                case 5:
+                    return new O_Shape();
+                    
+                case 6:
+                    return new Z_Shape();
+                    
+                case 7:
+                    return new S_Shape();
 
                 default:
                     return new I_Shape();
