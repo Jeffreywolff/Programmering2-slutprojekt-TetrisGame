@@ -25,6 +25,7 @@ namespace Tetris_Game
     {
         GameModel gameModel = new GameModel();
         private Grid gameGrid = new Grid();
+        private Grid sideBarGrid = new Grid();
         private int[,] validGridPositions = new int[10, 20];
         public GameBoard()
         {
@@ -105,6 +106,15 @@ namespace Tetris_Game
 
         private void CreateSideBar()
         {
+            //Creates amount of rows in sidebar grid
+            for (int i = 0; i < 5; i++)
+            {
+                sideBarGrid.RowDefinitions.Add(new RowDefinition());
+            }
+            Grid.SetColumn(sideBarGrid, 1);
+            root.Children.Add(sideBarGrid);
+
+            // Rectangle created for Background Color
             var sideRectangle = new Rectangle();
             SolidColorBrush blueBrush = new SolidColorBrush(Color.FromRgb(66, 135, 245));
             sideRectangle.Fill = blueBrush;
@@ -120,8 +130,8 @@ namespace Tetris_Game
             scoreText.Height = 30;
             scoreText.Background = blackBrush;
             scoreText.Foreground = whiteBrush;
-            Grid.SetColumn(scoreText, 1);
-            root.Children.Add(scoreText);
+            Grid.SetRow(scoreText, 2);
+            sideBarGrid.Children.Add(scoreText);
 
         }
         private void StartGame()
@@ -136,9 +146,37 @@ namespace Tetris_Game
 
         
 
-        private void UpdateShapeMatrix()
+
+
+        private void gameTick(object sender, EventArgs e)
         {
-            
+            if (GameOver())
+            {
+
+            }
+
+            // Check if no active block, if so add next
+            if (gameModel.activeTetromino == null)
+            {
+                updateAllValidPlacements();
+                gameModel.activeTetromino = gameModel.nextTetromino;
+                InitializePositionAfterMatrix();
+                gameModel.getNextTetromino();
+                gameModel.shapeStillMovable = true;
+                gameModel.currentMatrix = gameModel.activeTetromino.shapePosition;
+            }
+            else
+            {
+                // Check if shape have reached bottom, If bottom true activeTetromino = null. Enables Sliding motion
+                moveItemDown();
+
+            }
+
+        }
+
+        private void UpdatePosition()
+        {
+
             if (gameModel.activeTetromino.TetrominoName == "O-Shape")
             {
                 return;
@@ -146,7 +184,7 @@ namespace Tetris_Game
             int iteration = 0;
             var upperBoundFirstDim = gameModel.currentMatrix.GetUpperBound(0);
             var upperBoundSecondDim = gameModel.currentMatrix.GetUpperBound(1);
-            
+
             var optimalRow = Grid.GetRow(gameModel.activeTetromino.GameBlock[1]);
             var optimalColumn = Grid.GetColumn(gameModel.activeTetromino.GameBlock[2]);
 
@@ -181,32 +219,32 @@ namespace Tetris_Game
 
 
                     }
-                    
+
                 }
 
             }
 
-            
-            
+
+
 
 
         }
 
         private bool NextColumnValid(int direction, Rectangle rect)
         {
-            
-                int getRectCol = Grid.GetColumn(rect);
-                int getRectRow = Grid.GetRow(rect);
-                if (validGridPositions[getRectCol + direction, getRectRow] == 1)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            
-            
+
+            int getRectCol = Grid.GetColumn(rect);
+            int getRectRow = Grid.GetRow(rect);
+            if (validGridPositions[getRectCol + direction, getRectRow] == 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
         }
 
         private bool NextRowValid(Rectangle rect)
@@ -263,28 +301,6 @@ namespace Tetris_Game
                 }
             }
             return ret;
-        }
-
-        private void gameTick(object sender, EventArgs e)
-        {
-
-            // Check if no active block, if so add next
-            if (gameModel.activeTetromino == null)
-            {
-                updateAllValidPlacements();
-                gameModel.activeTetromino = gameModel.nextTetromino;
-                InitializePositionAfterMatrix();
-                gameModel.getNextTetromino();
-                gameModel.shapeStillMovable = true;
-                gameModel.currentMatrix = gameModel.activeTetromino.shapePosition;
-            }
-            else
-            {
-                // Check if shape have reached bottom, If bottom true activeTetromino = null. Enables Sliding motion
-                moveItemDown();
-
-            }
-
         }
 
         private void updateAllValidPlacements()
@@ -432,7 +448,7 @@ namespace Tetris_Game
             else if (e.Key == Key.Up && gameModel.shapeStillMovable && gameModel.activeTetromino.GameBlock != null)
             {
                 gameModel.currentMatrix = RotateShapeMatrixClockwise(gameModel.currentMatrix, 4);
-                UpdateShapeMatrix();
+                UpdatePosition();
             }
         }
 
