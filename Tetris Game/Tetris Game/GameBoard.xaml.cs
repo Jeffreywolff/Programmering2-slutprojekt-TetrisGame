@@ -23,10 +23,13 @@ namespace Tetris_Game
     /// </summary>
     public partial class GameBoard : Window
     {
-        GameModel gameModel = new GameModel();
+        private DispatcherTimer gameTimer = new DispatcherTimer();
+        private GameModel gameModel = new GameModel();
         private Grid gameGrid = new Grid();
         private Grid sideBarGrid = new Grid();
         private int[,] validGridPositions = new int[10, 20];
+        private Image nextShape = new Image();
+        private int score = 0;
         public GameBoard()
         {
             InitializeComponent();
@@ -36,14 +39,11 @@ namespace Tetris_Game
 
         private void root_Loaded(object sender, RoutedEventArgs e)
         {
-
             CreateTetrisGrid(10, 20);
-            CreateSideBar();
+            InitiatingSidebar();
             InitGameControlls();
             StartGame();
         }
-
-
 
         private void InitGameControlls()
         {
@@ -52,7 +52,6 @@ namespace Tetris_Game
             this.KeyDown += new KeyEventHandler(ArrowKeyDownPressed);
             this.KeyDown += new KeyEventHandler(ArrowKeyUpPressed);
         }
-
 
         private void CreateTetrisGrid(int columns, int rows)
         {
@@ -104,15 +103,9 @@ namespace Tetris_Game
             }
         }
 
-        private void CreateSideBar()
+        private void InitiatingSidebar()
         {
-            //Creates amount of rows in sidebar grid
-            for (int i = 0; i < 5; i++)
-            {
-                sideBarGrid.RowDefinitions.Add(new RowDefinition());
-            }
-            Grid.SetColumn(sideBarGrid, 1);
-            root.Children.Add(sideBarGrid);
+            
 
             // Rectangle created for Background Color
             var sideRectangle = new Rectangle();
@@ -121,10 +114,18 @@ namespace Tetris_Game
             Grid.SetColumn(sideRectangle, 1);
             root.Children.Add(sideRectangle);
 
+            //Creates amount of rows in sidebar grid
+            for (int i = 0; i < 5; i++)
+            {
+                sideBarGrid.RowDefinitions.Add(new RowDefinition());
+            }
+            Grid.SetColumn(sideBarGrid, 1);
+            root.Children.Add(sideBarGrid);
+
             var scoreText = new TextBlock();
             SolidColorBrush blackBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             SolidColorBrush whiteBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            scoreText.Text = "000";
+            scoreText.Text = score.ToString();
             scoreText.FontSize = 30;
             scoreText.Width = 70;
             scoreText.Height = 30;
@@ -133,37 +134,47 @@ namespace Tetris_Game
             Grid.SetRow(scoreText, 2);
             sideBarGrid.Children.Add(scoreText);
 
+
+            Image tetrisLogo = new Image();
+            tetrisLogo.Source = new BitmapImage(new Uri("https://static.wikia.nocookie.net/nintendo/images/4/46/Tetris_logo.png/revision/latest?cb=20191220154645&path-prefix=en"));
+            Grid.SetRow(tetrisLogo, 0);
+            sideBarGrid.Children.Add(tetrisLogo);
+
+            //setting next shape image preview
+            
+            Grid.SetRow(nextShape, 1);
+            sideBarGrid.Children.Add(nextShape);
+
         }
         private void StartGame()
         {
-            DispatcherTimer gameTimer = new DispatcherTimer();
+            
             gameTimer.Interval = TimeSpan.FromMilliseconds(800);
             gameTimer.Tick += gameTick;
             gameModel.getNextTetromino();
             gameTimer.Start();
+            
 
         }
-
-        
-
-
 
         private void gameTick(object sender, EventArgs e)
         {
             if (GameOver())
             {
-
+                gameTimer.Stop();
             }
 
             // Check if no active block, if so add next
             if (gameModel.activeTetromino == null)
             {
+
                 updateAllValidPlacements();
                 gameModel.activeTetromino = gameModel.nextTetromino;
                 InitializePositionAfterMatrix();
                 gameModel.getNextTetromino();
                 gameModel.shapeStillMovable = true;
                 gameModel.currentMatrix = gameModel.activeTetromino.shapePosition;
+                nextShape.Source = new BitmapImage(new Uri(gameModel.nextTetromino.imageAdress));
             }
             else
             {
@@ -172,6 +183,25 @@ namespace Tetris_Game
 
             }
 
+        }
+
+        private bool GameOver()
+        {
+            var lowerBoundFirstDim = validGridPositions.GetLowerBound(0);
+            var lowerBoundSecondDim = validGridPositions.GetLowerBound(1);
+            for (int i = 0; i < lowerBoundFirstDim + 1; i++)
+            {
+                for (int j = 0; j < lowerBoundSecondDim + 1; j++)
+                {
+                    if (validGridPositions[i, j] == 1)
+                    {
+                        return true;
+                    }
+                    
+                }
+            }
+            return false;
+            
         }
 
         private void UpdatePosition()

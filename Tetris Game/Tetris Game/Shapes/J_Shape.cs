@@ -10,6 +10,7 @@ namespace Tetris_Game.Shapes
     {
         private List<Rectangle> _gameBlock = new List<Rectangle>();
         private const string _tetrominoName = "J-Shape";
+        private string _imageAdress = "https://static.wikia.nocookie.net/tetrisconcept/images/a/a4/J_Tetromino-0.png/revision/latest?cb=20201205151729";
 
         private int[,] _shapePosition = new int[4, 4] {
             {0, 0, 0, 0} ,   /*  initializers for row indexed by 0 */
@@ -42,6 +43,13 @@ namespace Tetris_Game.Shapes
             }
         }
 
+        string ITetromino.imageAdress
+        {
+            get
+            {
+                return _imageAdress;
+            }
+        }
 
         public J_Shape()
         {

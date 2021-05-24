@@ -14,6 +14,8 @@ namespace Tetris_Game
 
         int[,] shapePosition { get; }
 
+        string imageAdress { get; }
+
 
     }
 }
